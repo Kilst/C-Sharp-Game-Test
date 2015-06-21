@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //..
 using DrawGame.logic;
+using System.Threading;
 
 namespace DrawGame.view
 {
@@ -17,6 +18,7 @@ namespace DrawGame.view
         public Form1()
         {
             InitializeComponent();
+            Thread thread = new Thread(new ThreadStart(Thread));
         }
         Box box = new Box(50, 0);
         double gravity = 0.1;
@@ -25,6 +27,17 @@ namespace DrawGame.view
         
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         System.Drawing.Graphics graphics;
+
+        public void Thread()
+        {
+            
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Key down event
+            //e.KeyCode
+        }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -84,6 +97,7 @@ namespace DrawGame.view
             }
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             timer.Tick += new System.EventHandler(OnTimerEvent);
@@ -95,10 +109,12 @@ namespace DrawGame.view
 
         private void OnTimerEvent(object sender, EventArgs e)
         {
-            // Set box.Fuel level
             try
             {
                 label1.Text = "Fuel: " + (box.Fuel);
+                // Set box.Fuel level
+                lblX.Text = "X Velocity:" + box.Velocity.X;
+                lblY.Text = "Y Velocity:" + box.Velocity.Y;
             }
             catch (Exception)
             {
@@ -118,9 +134,9 @@ namespace DrawGame.view
                 
                 box.Velocity.Y = CollisionCheck(box.Velocity.Y);
                 // Falling check
-                if (box.Velocity.Y < 0.15 && box.Velocity.Y > -0.15 && box.Falling == false)
+                if (box.Velocity.Y > 0.1 && box.Falling == false)
                 {
-                    box.Velocity.Y = 0;
+                    //box.Velocity.Y = 0;
                     box.Falling = true;
                 }
 
@@ -144,49 +160,40 @@ namespace DrawGame.view
                     box.Velocity.Y += gravity * 2 - (gravity / 2);
                 }
                 // Check if we are moving right
-                if (box.Velocity.X > 0)
+                if (box.Velocity.X > 0.01)
                 {
                     // Add veloicty to position
                     box.MovePosition(new Vector2(sideways, 0));
 
-                    if (box.Velocity.X > 0.1 && box.Falling == false)
+                    if (box.Velocity.X > 0.01 && box.Falling == true)
                     {
-                        box.Velocity.X -= friction / 20;
+                        box.Velocity.X -= friction / 800;
                     }
-                    else if (box.Velocity.Y > 0.01)
+                    else if (box.Falling == false)
                     {
-                        box.Velocity.X -= friction / 200;
+                        box.Velocity.X -= friction / 40;
                     }
-                    else
-                    {
-                        if (box.Velocity.X < 0.015 && box.Velocity.X > -0.015)
-                        {
-                            box.Velocity.X = 0;
-                        }
-                    }
+
                 }
                 // Check if we are moving left
-                else if (box.Velocity.X < 0)
+                else if (box.Velocity.X < -0.01)
                 {
                     // Add veloicty to position
                     box.MovePosition(new Vector2(sideways, 0));
 
                     // Friction
-                    if (box.Velocity.X < -0.1 && box.Falling == false)
+                    if (box.Velocity.X < -0.01 && box.Falling == true)
                     {
-                        box.Velocity.X += friction / 20;
+                        box.Velocity.X += friction / 800;
                     }
-                    else if (box.Velocity.Y > 0.01)
+                    else if (box.Falling == false)
                     {
-                        box.Velocity.X += friction / 200;
+                        box.Velocity.X += friction / 40;
                     }
-                    else
-                    {
-                        if (box.Velocity.X < 0.015 && box.Velocity.X > -0.015)
-                        {
-                            box.Velocity.X = 0;
-                        }
-                    }
+                }
+                else
+                {
+                    //box.Velocity.X = 0;
                 }
             }
             catch (Exception)
@@ -207,8 +214,8 @@ namespace DrawGame.view
                     MessageBox.Show("Crashed. Too far down!", "Error");
                 }
             }
-            
-            if (box.Bottom.Y > 180 && box.Bottom.Y < 210 && (box.Bottom.X > 80 && box.Bottom.X < 164) && box.Falling == true)
+
+            if (box.Bottom.Y >= 180 && box.Bottom.Y < 210 && (box.Bottom.X > 80 && box.Bottom.X < 164) && box.Falling == true)
             {
                 if (velo > 1 && msg != true && checkBox1.Checked)
                 {
@@ -216,14 +223,13 @@ namespace DrawGame.view
                     timer.Enabled = false;
                     MessageBox.Show("Fail. Too fast!", "Error");
                 }
-                
+
                 box.Jumping = false;
                 //int offset = (int)(box.Bottom.Y - 180);
                 // Draw slightly above "flat" if we actually go through the ground
                 //graphics.Clear(Control.DefaultBackColor);
                 //graphics.DrawEllipse(System.Drawing.Pens.Black, (int)box.X, (int)box.Y - offset, box.Width, box.Height);
                 //graphics.DrawRectangle(System.Drawing.Pens.Red, (int)box.X, (int)box.Y - offset, box.Width, box.Height);
-                box.Falling = false;
 
                 // Move or set box Y position
                 box.Y = 170;
@@ -231,33 +237,39 @@ namespace DrawGame.view
                 box.Right.Y = 175;
                 box.Top.Y = 170;
                 box.Bottom.Y = 180;
-                if (velo > 0)
+                if (box.Velocity.Y > 0.1)
                 {
                     velo = velo - (velo * 2) * box.Bounce;
-                }
-                else if (velo < 0)
-                {
-                    velo = (velo - (velo * -2) * box.Bounce);
-                }
-                if (box.Bottom.Y >= 180)
-                {
                     box.Falling = false;
+                }
+                else if (velo > -0.1 && box.Falling == false)
+                {
+                    box.Velocity.Y = 0;
                 }
             }
 
             if (box.Top.Y > 180 && box.Top.Y < 210 && (box.Top.X > 80 && box.Top.X < 164))
             {
-                // Move or set box Y position
-                //box.Y = 210;
-                //box.Left.Y = 215;
-                //box.Right.Y = 215;
-                //box.Top.Y = 210;
-                //box.Bottom.Y = 220;
-                if (velo < 0)
+                if (velo < 0.1)
                 {
                     velo = ( (velo * -1) * box.Bounce);
                 }
             }
+
+            //if (box.Left.Y > 179 && box.Left.Y < 211 && (box.Left.X > 80 && box.Left.X < 164))
+            //{
+            //    if (box.Velocity.X > 0)
+            //    {
+            //        box.Velocity.X = box.Velocity.X - (box.Velocity.X * 2) * box.Bounce;
+            //    }
+            //}
+            //else if (box.Right.Y > 169 && box.Right.Y < 201 && (box.Right.X > 80 && box.Right.X < 164))
+            //{
+            //    if (box.Velocity.X < 0)
+            //    {
+            //        box.Velocity.X = ((box.Velocity.X * -1) * box.Bounce);
+            //    }
+            //}
             return velo;
         }
 
