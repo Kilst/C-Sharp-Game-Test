@@ -1,0 +1,11 @@
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\bin\Debug\DrawGame.view.exe.config
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\bin\Debug\DrawGame.view.exe
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\bin\Debug\DrawGame.view.pdb
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\obj\Debug\DrawGame.view.csprojResolveAssemblyReference.cache
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\obj\Debug\DrawGame.view.Form1.resources
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\obj\Debug\DrawGame.view.Properties.Resources.resources
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\obj\Debug\DrawGame.view.csproj.GenerateResource.Cache
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\obj\Debug\DrawGame.view.exe
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\obj\Debug\DrawGame.view.pdb
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\bin\Debug\DrawGame.logic.dll
+C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\bin\Debug\DrawGame.logic.pdb
