@@ -20,6 +20,7 @@ namespace DrawGame.logic
         public int Fuel { get; set; }
         public bool Falling { get; set; }
         public bool Jumping { get; set; }
+        public double Bounce { get; set; }
 
         public Box()
         {
@@ -35,6 +36,7 @@ namespace DrawGame.logic
             Fuel = 50;
             Falling = false;
             Jumping = true;
+            Bounce = 1;
         }
 
         public Box(double x, double y)
@@ -51,13 +53,13 @@ namespace DrawGame.logic
             Fuel = 50;
             Falling = false;
             Jumping = true;
+            Bounce = 1;
         }
 
         public void MoveMe(Vector2 velocity)
         {
             this.Velocity.X += velocity.X;
             this.Velocity.Y += velocity.Y;
-            //MoveEntire(velocity);
         }
 
         public void MovePosition(Vector2 velocity)
@@ -76,7 +78,7 @@ namespace DrawGame.logic
             this.Bottom.Y += velocity.Y;
         }
 
-        public void MaxVelocityCheck()
+        public void TerminalVelocityCheck()
         {
             // Limit X velocity
             if (this.Velocity.X < -1)

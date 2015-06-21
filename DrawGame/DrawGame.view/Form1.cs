@@ -62,6 +62,8 @@ namespace DrawGame.view
                     }
                     //box.Bottom.Y = box.Bottom.Y - 1;
                     box.MoveMe(new Vector2(0, 2));
+                    box.Jumping = true;
+                    box.Falling = true;
                     return true; //for the active control to see the keypress, return false
                 }
                 if (keyData == Keys.Space)
@@ -77,7 +79,9 @@ namespace DrawGame.view
                 return true;
             }
             else
+            {
                 return base.ProcessCmdKey(ref msg, keyData);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -120,7 +124,7 @@ namespace DrawGame.view
                     box.Falling = true;
                 }
 
-                box.MaxVelocityCheck();
+                box.TerminalVelocityCheck();
 
 
                 // Check if we are moving downwards
@@ -214,11 +218,11 @@ namespace DrawGame.view
                 }
                 
                 box.Jumping = false;
-                int offset = (int)(box.Bottom.Y - 181);
+                //int offset = (int)(box.Bottom.Y - 180);
                 // Draw slightly above "flat" if we actually go through the ground
-                graphics.Clear(Control.DefaultBackColor);
-                graphics.DrawEllipse(System.Drawing.Pens.Black, (int)box.X, (int)box.Y - offset, box.Width, box.Height);
-                graphics.DrawRectangle(System.Drawing.Pens.Red, (int)box.X, (int)box.Y - offset, box.Width, box.Height);
+                //graphics.Clear(Control.DefaultBackColor);
+                //graphics.DrawEllipse(System.Drawing.Pens.Black, (int)box.X, (int)box.Y - offset, box.Width, box.Height);
+                //graphics.DrawRectangle(System.Drawing.Pens.Red, (int)box.X, (int)box.Y - offset, box.Width, box.Height);
                 box.Falling = false;
 
                 // Move or set box Y position
@@ -229,11 +233,11 @@ namespace DrawGame.view
                 box.Bottom.Y = 180;
                 if (velo > 0)
                 {
-                    velo = velo - (velo * 2);
+                    velo = velo - (velo * 2) * box.Bounce;
                 }
                 else if (velo < 0)
                 {
-                    velo = (velo + (velo * -2) * 0.75);
+                    velo = (velo - (velo * -2) * box.Bounce);
                 }
                 if (box.Bottom.Y >= 180)
                 {
@@ -244,11 +248,15 @@ namespace DrawGame.view
             if (box.Top.Y > 180 && box.Top.Y < 210 && (box.Top.X > 80 && box.Top.X < 164))
             {
                 // Move or set box Y position
-                box.Y = 210;
-                box.Left.Y = 215;
-                box.Right.Y = 215;
-                box.Top.Y = 210;
-                box.Bottom.Y = 220;
+                //box.Y = 210;
+                //box.Left.Y = 215;
+                //box.Right.Y = 215;
+                //box.Top.Y = 210;
+                //box.Bottom.Y = 220;
+                if (velo < 0)
+                {
+                    velo = ( (velo * -1) * box.Bounce);
+                }
             }
             return velo;
         }
@@ -272,6 +280,26 @@ namespace DrawGame.view
             msg = false;
             box.Jumping = true;
             box.Fuel = 50;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gravity == 0.01)
+                {
+                    gravity = 0.1;
+                }
+                else
+                {
+                    gravity = 0.01;
+                }
+                textBox1.Text = "" + gravity;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Not a number!", "Error");
+            }
         }
     }
 }
