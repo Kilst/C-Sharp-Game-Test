@@ -19,8 +19,10 @@ namespace DrawGame.view
         {
             InitializeComponent();
             Thread thread = new Thread(new ThreadStart(Thread));
+            box.Velocity.Y = 1;
         }
         Box box = new Box(50, 0);
+        Platform platform = new Platform();
         double gravity = 0.1;
         double friction = 1;
         bool msg = false;
@@ -132,69 +134,68 @@ namespace DrawGame.view
                 graphics.DrawEllipse(System.Drawing.Pens.Black, (int)box.X, (int)box.Y, box.Width, box.Height);
                 graphics.DrawRectangle(System.Drawing.Pens.Red, (int)box.X, (int)box.Y, box.Width, box.Height);
                 
-                box.Velocity.Y = CollisionCheck(box.Velocity.Y);
-                // Falling check
-                if (box.Velocity.Y > 0.1 && box.Falling == false)
-                {
-                    //box.Velocity.Y = 0;
-                    box.Falling = true;
-                }
+                box.Velocity.Y = platform.CollisionCheck(box,box.Velocity.Y);
+
 
                 box.TerminalVelocityCheck();
 
+                box.Movement(platform, gravity, box, friction);
 
-                // Check if we are moving downwards
-                if (box.Velocity.Y > 0)
-                {
-                    // Add veloicty to position
-                    box.MovePosition(new Vector2(0, speed));
+                #region Unused Player Movement
+                //// Check if we are moving downwards
+                //if (box.Velocity.Y >= 0 && platform.CollisionTest(box) == false)
+                //{
+                //    box.Falling = true;
+                //    // Add veloicty to position
+                //    box.MovePosition(new Vector2(0, speed));
 
-                    box.Velocity.Y += gravity - (gravity / 2);
-                }
-                // Check if we are moving upwards
-                else if (box.Velocity.Y <= 0)
-                {
-                    // Add veloicty to position
-                    box.MovePosition(new Vector2(0, speed));
+                //    box.Velocity.Y += gravity - (gravity / 2);
+                //}
+                //// Check if we are moving upwards
+                //else if (box.Velocity.Y <= 0 && platform.CollisionTest(box) == false)
+                //{
+                //    // Add veloicty to position
+                //    box.MovePosition(new Vector2(0, speed));
 
-                    box.Velocity.Y += gravity * 2 - (gravity / 2);
-                }
-                // Check if we are moving right
-                if (box.Velocity.X > 0.01)
-                {
-                    // Add veloicty to position
-                    box.MovePosition(new Vector2(sideways, 0));
+                //    box.Velocity.Y += gravity * 2 - (gravity / 2);
+                //}
+                //// Check if we are moving right
+                //if (box.Velocity.X > 0.01)
+                //{
+                //    // Add veloicty to position
+                //    box.MovePosition(new Vector2(sideways, 0));
 
-                    if (box.Velocity.X > 0.01 && box.Falling == true)
-                    {
-                        box.Velocity.X -= friction / 800;
-                    }
-                    else if (box.Falling == false)
-                    {
-                        box.Velocity.X -= friction / 40;
-                    }
+                //    if (box.Velocity.X > 0.01 && box.Falling == true)
+                //    {
+                //        box.Velocity.X -= friction / 800;
+                //    }
+                //    else if (box.Falling == false)
+                //    {
+                //        box.Velocity.X -= friction / 40;
+                //    }
 
-                }
-                // Check if we are moving left
-                else if (box.Velocity.X < -0.01)
-                {
-                    // Add veloicty to position
-                    box.MovePosition(new Vector2(sideways, 0));
+                //}
+                //// Check if we are moving left
+                //else if (box.Velocity.X < -0.01)
+                //{
+                //    // Add veloicty to position
+                //    box.MovePosition(new Vector2(sideways, 0));
 
-                    // Friction
-                    if (box.Velocity.X < -0.01 && box.Falling == true)
-                    {
-                        box.Velocity.X += friction / 800;
-                    }
-                    else if (box.Falling == false)
-                    {
-                        box.Velocity.X += friction / 40;
-                    }
-                }
-                else
-                {
-                    //box.Velocity.X = 0;
-                }
+                //    // Friction
+                //    if (box.Velocity.X < -0.01 && box.Falling == true)
+                //    {
+                //        box.Velocity.X += friction / 800;
+                //    }
+                //    else if (box.Falling == false)
+                //    {
+                //        box.Velocity.X += friction / 40;
+                //    }
+                //}
+                //else
+                //{
+                //    //box.Velocity.X = 0;
+                //}
+                #endregion
             }
             catch (Exception)
             {
@@ -203,6 +204,8 @@ namespace DrawGame.view
             }
         }
 
+
+        #region Unused Collision Ceck
         private double CollisionCheck(double velo)
         {
             if (box.Bottom.Y > 280)
@@ -213,6 +216,11 @@ namespace DrawGame.view
                     timer.Enabled = false;
                     MessageBox.Show("Crashed. Too far down!", "Error");
                 }
+            }
+
+            if (box.Bottom.Y >= 180 && box.Bottom.Y < 210 && (box.Bottom.X > 80 && box.Bottom.X < 164) && (velo > -0.1 && box.Velocity.Y < 0.1) && box.Falling == false)
+            {
+                velo = 0;
             }
 
             if (box.Bottom.Y >= 180 && box.Bottom.Y < 210 && (box.Bottom.X > 80 && box.Bottom.X < 164) && box.Falling == true)
@@ -237,24 +245,34 @@ namespace DrawGame.view
                 box.Right.Y = 175;
                 box.Top.Y = 170;
                 box.Bottom.Y = 180;
-                if (box.Velocity.Y > 0.1)
+
+
+
+                
+                if (box.Velocity.Y >= 0)
                 {
                     velo = velo - (velo * 2) * box.Bounce;
+                    box.Falling = true;
+                }
+                else if (box.Velocity.Y < 0)
+                {
+                    velo = velo - (velo * 2) * box.Bounce;
+                    box.Falling = true;
+                }
+                if (box.Velocity.Y > -0.01)
+                {
                     box.Falling = false;
                 }
-                else if (velo > -0.1 && box.Falling == false)
-                {
-                    box.Velocity.Y = 0;
-                }
+                
             }
 
-            if (box.Top.Y > 180 && box.Top.Y < 210 && (box.Top.X > 80 && box.Top.X < 164))
-            {
-                if (velo < 0.1)
-                {
-                    velo = ( (velo * -1) * box.Bounce);
-                }
-            }
+            //if (box.Top.Y > 180 && box.Top.Y < 210 && (box.Top.X > 80 && box.Top.X < 164))
+            //{
+            //    if (velo < 0.1)
+            //    {
+            //        velo = ( (velo * -1) * box.Bounce);
+            //    }
+            //}
 
             //if (box.Left.Y > 179 && box.Left.Y < 211 && (box.Left.X > 80 && box.Left.X < 164))
             //{
@@ -272,6 +290,8 @@ namespace DrawGame.view
             //}
             return velo;
         }
+        #endregion
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -283,7 +303,7 @@ namespace DrawGame.view
             timer.Enabled = true;
             box.X = 100;
             box.Y = 0;
-            box.Velocity.Y = 0;
+            box.Velocity.Y = 1;
             box.Velocity.X = 0;
             box.Left = new Vector2(0, 104);
             box.Right = new Vector2(10, 105);

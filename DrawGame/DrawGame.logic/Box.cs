@@ -34,7 +34,7 @@ namespace DrawGame.logic
             Width = 10;
             Height = 10;
             Fuel = 50;
-            Falling = false;
+            Falling = true;
             Jumping = true;
             Bounce = 1;
         }
@@ -51,7 +51,7 @@ namespace DrawGame.logic
             Width = 10;
             Height = 10;
             Fuel = 50;
-            Falling = false;
+            Falling = true;
             Jumping = true;
             Bounce = 1;
         }
@@ -97,6 +97,71 @@ namespace DrawGame.logic
             else if (this.Velocity.Y < -3)
             {
                 this.Velocity.Y = -3;
+            }
+        }
+
+        public void Movement(Platform platform, double gravity, Box box, double friction)
+        {
+            if (box.Velocity.X < 0.1 && box.Velocity.X > -0.1)
+            {
+                box.Velocity.X = 0;
+            }
+
+            double speed = (box.Velocity.Y);
+            double sideways = (box.Velocity.X);
+            bool collision = platform.CollisionTest(box);
+            // Check if we are moving downwards
+            if (box.Velocity.Y >= 0 && platform.CollisionTest(box) == false)
+            {
+                box.Falling = true;
+
+                box.Velocity.Y += gravity - (gravity / 2);
+
+                // Add veloicty to position
+                box.MovePosition(new Vector2(0, speed));               
+            }
+            // Check if we are moving upwards
+            else if (box.Velocity.Y < 0 && platform.CollisionTest(box) == false)
+            {
+                box.Velocity.Y += gravity * 2 - (gravity / 2);
+
+                // Add veloicty to position
+                box.MovePosition(new Vector2(0, speed));
+            }
+            // Check if we are moving right
+            if (box.Velocity.X > 0)
+            {
+                // Add veloicty to position
+                box.MovePosition(new Vector2(sideways, 0));
+
+                if (box.Velocity.X > 0.01 && platform.CollisionTest(box) == false)
+                {
+                    box.Velocity.X -= friction / 800;
+                }
+                else
+                {
+                    box.Velocity.X -= friction / 40;
+                }
+            }
+            // Check if we are moving left
+            else if (box.Velocity.X < 0)
+            {
+                // Add veloicty to position
+                box.MovePosition(new Vector2(sideways, 0));
+
+                // Friction
+                if (box.Velocity.X < -0.01 && platform.CollisionTest(box) == false)
+                {
+                    box.Velocity.X += friction / 800;
+                }
+                else
+                {
+                    box.Velocity.X += friction / 40;
+                }
+            }
+            else
+            {
+                
             }
         }
     }
