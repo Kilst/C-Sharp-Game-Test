@@ -83,20 +83,20 @@ namespace DrawGame.logic
 
         public double CollisionCheckX(Box box, double velo)
         {
-            if (box.Left.Y >= TopLeft.Y && box.Left.Y < BottomLeft.Y && (box.Left.X > TopLeft.X && box.Left.X < TopRight.X))
-            {
-                box.Jumping = false;
+            //if (box.Left.Y >= TopLeft.Y && box.Left.Y < BottomLeft.Y && (box.Left.X > TopLeft.X && box.Left.X < TopRight.X))
+            //{
+            //    box.Jumping = false;
 
-                velo = velo - (velo * 2) * box.Bounce;
-                box.Falling = true;
-            }
-            else if (box.Right.Y >= TopLeft.Y && box.Right.Y < BottomLeft.Y && (box.Right.X > TopLeft.X && box.Right.X < TopRight.X))
-            {
-                box.Jumping = false;
+            //    velo = velo - (velo * 2) * box.Bounce;
+            //    box.Falling = true;
+            //}
+            //else if (box.Right.Y >= TopLeft.Y && box.Right.Y < BottomLeft.Y && (box.Right.X > TopLeft.X && box.Right.X < TopRight.X))
+            //{
+            //    box.Jumping = false;
 
-                velo = velo - (velo * 2) * box.Bounce;
-                box.Falling = true;
-            }
+            //    velo = velo - (velo * 2) * box.Bounce;
+            //    box.Falling = true;
+            //}
 
             return velo;
         }
