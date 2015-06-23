@@ -21,12 +21,12 @@ namespace DrawGame.view
             Thread thread = new Thread(new ThreadStart(Thread));
             box.Velocity.Y = 1;
         }
-        Box box = new Box(50, 0);
+        Box box = new Box(100, 0);
         Platform platform = new Platform();
         double gravity = 0.1;
         double friction = 1;
-        
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+
+        System.Windows.Forms.Timer timer;
         System.Drawing.Graphics graphics;
 
         public void Thread()
@@ -56,18 +56,11 @@ namespace DrawGame.view
             {
                 if (keyData == Keys.Up || keyData == Keys.W)
                 {
-                    if (checkBox1.Checked)
-                    {
-                        box.Fuel -= 1;
-                    }
                     box.Jumping = true;
                     if (box.Bottom.Y > 179 && box.Bottom.Y < 210 && (box.Bottom.X > 80 && box.Bottom.X < 164))
                     {
-                        box.Y = box.Y - 1;
-                        box.Left.Y = box.Left.Y - 1;
-                        box.Right.Y = box.Right.Y - 1;
-                        box.Top.Y = box.Top.Y - 1;
-                        box.Bottom.Y = box.Bottom.Y - 1;
+                        // Move up a bit so we aren't stuck on the platform
+                        box.MovePosition(new Vector2(0, -1));
                     }
                     box.Falling = false;
                     box.MoveMe(new Vector2(0, -2));
@@ -75,11 +68,6 @@ namespace DrawGame.view
                 }
                 if (keyData == Keys.Down || keyData == Keys.S)
                 {
-                    if (checkBox1.Checked)
-                    {
-                        box.Fuel -= 1;
-                    }
-                    //box.Bottom.Y = box.Bottom.Y - 1;
                     box.MoveMe(new Vector2(0, 2));
                     box.Jumping = true;
                     return true; //for the active control to see the keypress, return false
@@ -88,11 +76,8 @@ namespace DrawGame.view
                 {
                     if (box.Jumping != true)
                     {
-                        box.Y = box.Y - 1;
-                        box.Left.Y = box.Left.Y - 1;
-                        box.Right.Y = box.Right.Y - 1;
-                        box.Top.Y = box.Top.Y - 1;
-                        box.Bottom.Y = box.Bottom.Y - 1;
+                        box.MovePosition(new Vector2(0, -1));
+
                         box.MoveMe(new Vector2(0, -3));
                         box.Jumping = true;
                         box.Falling = false;
@@ -110,15 +95,31 @@ namespace DrawGame.view
 
         private void button1_Click(object sender, EventArgs e)
         {
-            timer.Tick += new System.EventHandler(OnTimerEvent);
-            timer.Interval = 10;
-            timer.Enabled = true;
+            if (timer == null)
+            {
+                timer = new System.Windows.Forms.Timer();
+                timer.Tick += new System.EventHandler(OnTimerEvent);
+                timer.Interval = 10;
+                timer.Enabled = true;
 
-            graphics = this.CreateGraphics();
+                graphics = this.CreateGraphics();
+            }
         }
 
         private void OnTimerEvent(object sender, EventArgs e)
         {
+            // Are we testing or playing?
+            if (checkBox1.Checked)
+            {
+                // Playing
+                box.GameOn = true;
+            }
+            else
+            {
+                // Testing
+                box.GameOn = false;
+            }
+
             try
             {
                 label1.Text = "Fuel: " + (box.Fuel);
@@ -142,8 +143,9 @@ namespace DrawGame.view
                 graphics.DrawEllipse(System.Drawing.Pens.Black, (int)box.X, (int)box.Y, box.Width, box.Height);
                 graphics.DrawRectangle(System.Drawing.Pens.Red, (int)box.X, (int)box.Y, box.Width, box.Height);
                 
-                box.Velocity.Y = platform.CollisionCheck(box,box.Velocity.Y);
+                box.Velocity.Y = platform.CollisionCheck(box, box.Velocity.Y);
                 box.Velocity.X = platform.CollisionCheckX(box, box.Velocity.X);
+                //Collision();
 
 
                 box.TerminalVelocityCheck();
@@ -327,6 +329,37 @@ namespace DrawGame.view
             box.Fuel = 50;
         }
 
+        private void Collision()
+        {
+            if (box.Bottom.Y >= 270 && (box.Bottom.X > 0 || box.Bottom.X < 400) && box.Falling == true)
+            {
+                box.Jumping = false;
+
+                if (box.Velocity.Y >= 0)
+                {
+                    box.Velocity.Y = box.Velocity.Y - (box.Velocity.Y * 2) * box.Bounce;
+                    box.Falling = true;
+                }
+                else if (box.Velocity.Y < 0)
+                {
+                    box.Velocity.Y = box.Velocity.Y - (box.Velocity.Y * 2) * box.Bounce;
+                    box.Falling = true;
+                }
+                if (box.Velocity.Y > -0.2)
+                {
+                    box.Falling = false;
+                }
+                if (box.Velocity.Y > -0.2)
+                {
+                    box.Falling = false;
+                }
+            }
+            if (box.Bottom.Y >= 270 && (box.Bottom.X > 0 || box.Bottom.X < 400) && box.Falling == false)
+            {
+                box.Velocity.Y = 0;
+            }
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             try
@@ -334,10 +367,12 @@ namespace DrawGame.view
                 if (gravity == 0.01)
                 {
                     gravity = 0.1;
+                    friction = 1;
                 }
                 else
                 {
                     gravity = 0.01;
+                    friction = 0.5;
                 }
                 textBox1.Text = "" + gravity;
             }

@@ -37,10 +37,7 @@ namespace DrawGame.logic
 
             if ((box.Bottom.Y >= TopLeft.Y && box.Bottom.Y < BottomLeft.Y && (box.Bottom.X > TopLeft.X && box.Bottom.X < TopRight.X) && box.Falling == true))
             {
-
                 box.Jumping = false;
-
-                
 
                 if (box.Velocity.Y >= 0)
                 {
@@ -57,6 +54,7 @@ namespace DrawGame.logic
                     box.Falling = false;
                 }
             }
+
             else if (box.Top.Y >= TopLeft.Y && box.Top.Y < BottomLeft.Y && (box.Top.X > TopLeft.X && box.Top.X < TopRight.X))
             {
                 box.Jumping = false;

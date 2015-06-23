@@ -21,6 +21,7 @@ namespace DrawGame.logic
         public bool Falling { get; set; }
         public bool Jumping { get; set; }
         public double Bounce { get; set; }
+        public bool GameOn { get; set; }
 
         public Box()
         {
@@ -37,6 +38,7 @@ namespace DrawGame.logic
             Falling = true;
             Jumping = true;
             Bounce = 1;
+            GameOn = false;
         }
 
         public Box(double x, double y)
@@ -54,12 +56,21 @@ namespace DrawGame.logic
             Falling = true;
             Jumping = true;
             Bounce = 1;
+            GameOn = false;
         }
 
         public void MoveMe(Vector2 velocity)
         {
             this.Velocity.X += velocity.X;
             this.Velocity.Y += velocity.Y;
+            if (this.GameOn == true)
+            {
+                this.Fuel -= 1;
+                if (Fuel < 0)
+                {
+                    Fuel = 0;
+                }
+            }
         }
 
         public void MovePosition(Vector2 velocity)
@@ -143,7 +154,14 @@ namespace DrawGame.logic
 
                 if (box.Velocity.X > 0.01 && platform.CollisionTest(box) == false)
                 {
-                    box.Velocity.X -= friction / 800;
+                    if (Fuel < 1)
+                    {
+                        box.Velocity.X -= friction / 400;
+                    }
+                    else
+                    {
+                        box.Velocity.X -= friction / 800;
+                    }
                 }
                 else
                 {
@@ -159,7 +177,14 @@ namespace DrawGame.logic
                 // Friction
                 if (box.Velocity.X < -0.01 && platform.CollisionTest(box) == false)
                 {
-                    box.Velocity.X += friction / 800;
+                    if (Fuel < 1)
+                    {
+                        box.Velocity.X -= friction / 400;
+                    }
+                    else
+                    {
+                        box.Velocity.X += friction / 800;
+                    }
                 }
                 else
                 {
