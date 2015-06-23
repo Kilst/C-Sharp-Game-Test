@@ -17,29 +17,30 @@ namespace DrawGame.logic
         {
             TopLeft = new Vector2(80, 180);
             TopRight = new Vector2(164, 180);
-            BottomLeft = new Vector2(80, 210);
-            BottomRight = new Vector2(164, 210);
+            BottomLeft = new Vector2(80, 208);
+            BottomRight = new Vector2(164, 208);
         }
 
         public double CollisionCheck(Box box, double velo)
         {
-            if (box.Bottom.Y > 180 && box.Bottom.Y < 210 && (box.Bottom.X > 80 && box.Bottom.X < 164) && (velo > -0.21 && box.Velocity.Y < 0.21) && box.Falling == false)
+            if (box.Bottom.Y >= 179 && box.Bottom.Y < 210 && (box.Bottom.X > 80 && box.Bottom.X < 164) && (velo > -0.2 && box.Velocity.Y < 0.2) && box.Falling == false)
             {
                 velo = 0;
-            }
 
-
-            if (box.Bottom.Y > TopLeft.Y && box.Bottom.Y < BottomLeft.Y && (box.Bottom.X > TopLeft.X && box.Bottom.X < TopRight.X) && box.Falling == true)
-            {
-
-                box.Jumping = false;
-
-                // Move or set box Y position
                 box.Y = 170;
                 box.Left.Y = 175;
                 box.Right.Y = 175;
                 box.Top.Y = 170;
                 box.Bottom.Y = 180;
+            }
+
+
+            if ((box.Bottom.Y >= TopLeft.Y && box.Bottom.Y < BottomLeft.Y && (box.Bottom.X > TopLeft.X && box.Bottom.X < TopRight.X) && box.Falling == true))
+            {
+
+                box.Jumping = false;
+
+                
 
                 if (box.Velocity.Y >= 0)
                 {
@@ -55,6 +56,46 @@ namespace DrawGame.logic
                 {
                     box.Falling = false;
                 }
+            }
+            else if (box.Top.Y >= TopLeft.Y && box.Top.Y < BottomLeft.Y && (box.Top.X > TopLeft.X && box.Top.X < TopRight.X))
+            {
+                box.Jumping = false;
+
+
+
+                if (box.Velocity.Y >= 0)
+                {
+                    velo = velo - (velo * 2) * box.Bounce;
+                    box.Falling = true;
+                }
+                else if (box.Velocity.Y < 0)
+                {
+                    velo = velo - (velo * 2) * box.Bounce;
+                    box.Falling = true;
+                }
+                if (box.Velocity.Y > -0.2)
+                {
+                    box.Falling = false;
+                }
+            }
+            return velo;
+        }
+
+        public double CollisionCheckX(Box box, double velo)
+        {
+            if (box.Left.Y >= TopLeft.Y && box.Left.Y < BottomLeft.Y && (box.Left.X > TopLeft.X && box.Left.X < TopRight.X))
+            {
+                box.Jumping = false;
+
+                velo = velo - (velo * 2) * box.Bounce;
+                box.Falling = true;
+            }
+            else if (box.Right.Y >= TopLeft.Y && box.Right.Y < BottomLeft.Y && (box.Right.X > TopLeft.X && box.Right.X < TopRight.X))
+            {
+                box.Jumping = false;
+
+                velo = velo - (velo * 2) * box.Bounce;
+                box.Falling = true;
             }
 
             return velo;

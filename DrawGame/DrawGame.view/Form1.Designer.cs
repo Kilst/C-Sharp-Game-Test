@@ -37,6 +37,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.lblX = new System.Windows.Forms.Label();
             this.lblY = new System.Windows.Forms.Label();
+            this.lblTop = new System.Windows.Forms.Label();
+            this.lblBottom = new System.Windows.Forms.Label();
+            this.lblLeft = new System.Windows.Forms.Label();
+            this.lblRight = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -129,11 +133,55 @@
             this.lblY.TabIndex = 8;
             this.lblY.Text = "Y Velocity:";
             // 
+            // lblTop
+            // 
+            this.lblTop.AutoSize = true;
+            this.lblTop.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTop.Location = new System.Drawing.Point(367, 68);
+            this.lblTop.Name = "lblTop";
+            this.lblTop.Size = new System.Drawing.Size(78, 16);
+            this.lblTop.TabIndex = 9;
+            this.lblTop.Text = "Top Position:";
+            // 
+            // lblBottom
+            // 
+            this.lblBottom.AutoSize = true;
+            this.lblBottom.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBottom.Location = new System.Drawing.Point(367, 84);
+            this.lblBottom.Name = "lblBottom";
+            this.lblBottom.Size = new System.Drawing.Size(96, 16);
+            this.lblBottom.TabIndex = 10;
+            this.lblBottom.Text = "Bottom Position:";
+            // 
+            // lblLeft
+            // 
+            this.lblLeft.AutoSize = true;
+            this.lblLeft.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeft.Location = new System.Drawing.Point(367, 100);
+            this.lblLeft.Name = "lblLeft";
+            this.lblLeft.Size = new System.Drawing.Size(78, 16);
+            this.lblLeft.TabIndex = 11;
+            this.lblLeft.Text = "Left Positon:";
+            // 
+            // lblRight
+            // 
+            this.lblRight.AutoSize = true;
+            this.lblRight.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRight.Location = new System.Drawing.Point(367, 116);
+            this.lblRight.Name = "lblRight";
+            this.lblRight.Size = new System.Drawing.Size(85, 16);
+            this.lblRight.TabIndex = 12;
+            this.lblRight.Text = "Right Position:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 262);
+            this.ClientSize = new System.Drawing.Size(525, 262);
+            this.Controls.Add(this.lblRight);
+            this.Controls.Add(this.lblLeft);
+            this.Controls.Add(this.lblBottom);
+            this.Controls.Add(this.lblTop);
             this.Controls.Add(this.lblY);
             this.Controls.Add(this.lblX);
             this.Controls.Add(this.button3);
@@ -161,6 +209,10 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label lblX;
         private System.Windows.Forms.Label lblY;
+        private System.Windows.Forms.Label lblTop;
+        private System.Windows.Forms.Label lblBottom;
+        private System.Windows.Forms.Label lblLeft;
+        private System.Windows.Forms.Label lblRight;
     }
 }
 

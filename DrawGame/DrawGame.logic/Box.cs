@@ -102,7 +102,7 @@ namespace DrawGame.logic
 
         public void Movement(Platform platform, double gravity, Box box, double friction)
         {
-            if (box.Velocity.X < 0.1 && box.Velocity.X > -0.1)
+            if (box.Velocity.X < 0.2 && box.Velocity.X > -0.2)
             {
                 box.Velocity.X = 0;
             }
@@ -113,12 +113,19 @@ namespace DrawGame.logic
             // Check if we are moving downwards
             if (box.Velocity.Y >= 0 && platform.CollisionTest(box) == false)
             {
-                box.Falling = true;
+                
 
-                box.Velocity.Y += gravity - (gravity / 2);
+                if ((box.Bottom.Y >= platform.TopLeft.Y && box.Bottom.Y <= platform.BottomLeft.Y && (box.Bottom.X >= platform.TopLeft.X && box.Bottom.X <= platform.TopRight.X)))
+                {
+                    box.Falling = true;
+                }
+                else
+                {
+                    box.Velocity.Y += gravity - (gravity / 2);
 
-                // Add veloicty to position
-                box.MovePosition(new Vector2(0, speed));               
+                    // Add veloicty to position
+                    box.MovePosition(new Vector2(0, speed));
+                }
             }
             // Check if we are moving upwards
             else if (box.Velocity.Y < 0 && platform.CollisionTest(box) == false)
