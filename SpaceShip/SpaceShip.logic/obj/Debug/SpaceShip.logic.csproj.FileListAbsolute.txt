@@ -1,0 +1,5 @@
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.logic\obj\Debug\SpaceShip.logic.csprojResolveAssemblyReference.cache
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.logic\bin\Debug\SpaceShip.logic.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.logic\bin\Debug\SpaceShip.logic.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.logic\obj\Debug\SpaceShip.logic.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.logic\obj\Debug\SpaceShip.logic.pdb

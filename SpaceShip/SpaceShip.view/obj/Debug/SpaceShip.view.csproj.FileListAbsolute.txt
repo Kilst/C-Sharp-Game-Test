@@ -1,0 +1,11 @@
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\bin\Debug\SpaceShip.view.exe.config
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\bin\Debug\SpaceShip.view.exe
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\bin\Debug\SpaceShip.view.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.view.csprojResolveAssemblyReference.cache
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.view.Properties.Resources.resources
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.view.csproj.GenerateResource.Cache
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.view.exe
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.view.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\bin\Debug\SpaceShip.logic.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\bin\Debug\SpaceShip.logic.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.view.Form1.resources
