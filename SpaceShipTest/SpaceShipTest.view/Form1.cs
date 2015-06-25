@@ -65,7 +65,10 @@ namespace SpaceShipTest.view
             }
             if (keyData == Keys.Up || keyData == Keys.W)
             {
-                game.ship.MovePosition(new Vector2(0, -2));
+                if (game.ship.IsGrounded == true)
+                {
+                    game.ship.MovePosition(new Vector2(0, -2));
+                }
                 game.ship.AddVelocity(new Vector2(0, -2));
                 return true; //for the active control to see the keypress, return false
             }
@@ -76,7 +79,10 @@ namespace SpaceShipTest.view
             }
             if (keyData == Keys.Space)
             {
-                game.ship.MovePosition(new Vector2(0, -2));
+                if (game.ship.IsGrounded == true)
+                {
+                    game.ship.MovePosition(new Vector2(0, -2));
+                }
                 game.ship.AddVelocity(new Vector2(0, -3));
                 return true; //for the active control to see the keypress, return false
             }

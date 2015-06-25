@@ -26,6 +26,8 @@ namespace SpaceShipTest.logic
         public void Start()
         {
             this.ship.CollisionCheck(list);
+            //this.ship.CollisionCheckY(list);
+            //this.ship.CollisionCheckX(list);
             this.ship.FrictionCheck();
             this.ship.GravityCheck();
             this.ship.Move();

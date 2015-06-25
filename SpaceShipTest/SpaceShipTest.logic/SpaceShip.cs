@@ -26,6 +26,40 @@ namespace SpaceShipTest.logic
             this.Velocity = new Vector2(0, 1);
         }
 
+        //public void CollisionCheckY(GameObjectList list)
+        //{
+        //    // Loop through the list of GameObjects,
+        //    // and compare each one's co-ords to our ships co-ords
+        //    foreach (GameObject obj in list.ObjectList)
+        //    {
+        //        // Make sure we don't compare our own co-ords to ourself
+        //        if (obj != this)
+        //        {
+        //            foreach (Vector2 objCoord in obj.Coords)
+        //            {
+        //                foreach (Vector2 shipCoord in this.Coords)
+        //                {
+        //                    // Do Collision Check
+        //                    // If any of our ships co-ords == any collision objects co-ords
+        //                    if ((int)shipCoord.X == (int)objCoord.X-1 && (int)shipCoord.Y == (int)objCoord.Y)
+        //                    {
+        //                        this.IsGrounded = true;
+        //                        //this.Velocity.X = this.Velocity.X * -1;
+        //                        // Invert Y velocity (so we "bounce" back)
+        //                        this.Velocity.Y = this.Velocity.Y * -1;
+        //                        return;
+        //                    }
+        //                    else
+        //                    {
+        //                        this.IsGrounded = false;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+
         public void CollisionCheck(GameObjectList list)
         {
             // Loop through the list of GameObjects,
@@ -35,9 +69,41 @@ namespace SpaceShipTest.logic
                 // Make sure we don't compare our own co-ords to ourself
                 if (obj != this)
                 {
-                    foreach (Vector2 objCoord in obj.Coords)
-	                {
-		                foreach (Vector2 shipCoord in this.Coords)
+                    foreach (Vector2 objCoord in obj.Left)
+                    {
+                        foreach (Vector2 shipCoord in this.Coords)
+                        {
+                            // Do Collision Check
+                            // If any of our ships co-ords == any collision objects co-ords
+                            if ((int)shipCoord.X == (int)objCoord.X && (int)shipCoord.Y == (int)objCoord.Y)
+                            {
+                                //this.Velocity.X = this.Velocity.X * -1;
+                                // Invert Y velocity (so we "bounce" back)
+                                this.Velocity.X = this.Velocity.X * -1;
+                                return;
+                            }
+                        }
+                    }
+
+                    foreach (Vector2 objCoord in obj.Right)
+                    {
+                        foreach (Vector2 shipCoord in this.Coords)
+                        {
+                            // Do Collision Check
+                            // If any of our ships co-ords == any collision objects co-ords
+                            if ((int)shipCoord.X == (int)objCoord.X && (int)shipCoord.Y == (int)objCoord.Y)
+                            {
+                                //this.Velocity.X = this.Velocity.X * -1;
+                                // Invert Y velocity (so we "bounce" back)
+                                this.Velocity.X = this.Velocity.X * -1;
+                                return;
+                            }
+                        }
+                    }
+
+                    foreach (Vector2 objCoord in obj.Top)
+                    {
+                        foreach (Vector2 shipCoord in this.Coords)
                         {
                             // Do Collision Check
                             // If any of our ships co-ords == any collision objects co-ords
@@ -54,10 +120,66 @@ namespace SpaceShipTest.logic
                                 this.IsGrounded = false;
                             }
                         }
-	                }
+                    }
+
+                    foreach (Vector2 objCoord in obj.Bottom)
+                    {
+                        foreach (Vector2 shipCoord in this.Coords)
+                        {
+                            // Do Collision Check
+                            // If any of our ships co-ords == any collision objects co-ords
+                            if ((int)shipCoord.X == (int)objCoord.X && (int)shipCoord.Y == (int)objCoord.Y)
+                            {
+                                //this.Velocity.X = this.Velocity.X * -1;
+                                // Invert Y velocity (so we "bounce" back)
+                                this.Velocity.Y = this.Velocity.Y * -1;
+                                return;
+                            }
+                            else
+                            {
+                                this.IsGrounded = false;
+                            }
+                        }
+                    }
+
                 }
             }
         }
+
+
+        //public void CollisionCheckX(GameObjectList list)
+        //{
+        //    // Loop through the list of GameObjects,
+        //    // and compare each one's co-ords to our ships co-ords
+        //    foreach (GameObject obj in list.ObjectList)
+        //    {
+        //        // Make sure we don't compare our own co-ords to ourself
+        //        if (obj != this)
+        //        {
+        //            foreach (Vector2 objCoord in obj.Coords)
+        //            {
+        //                foreach (Vector2 shipCoord in this.Coords)
+        //                {
+        //                    // Do Collision Check
+        //                    // If any of our ships co-ords == any collision objects co-ords
+        //                    if ((int)shipCoord.X == (int)objCoord.X && (int)shipCoord.Y == (int)objCoord.Y)
+        //                    {
+        //                        this.IsGrounded = true;
+        //                        //this.Velocity.X = this.Velocity.X * -1;
+        //                        // Invert Y velocity (so we "bounce" back)
+        //                        this.Velocity.X = this.Velocity.X * -1;
+        //                        return;
+        //                    }
+        //                    else
+        //                    {
+        //                        this.IsGrounded = false;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
         public void GravityCheck()
         {
             if (this.IsGrounded == false)

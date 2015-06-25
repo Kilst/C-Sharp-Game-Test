@@ -19,6 +19,10 @@ namespace SpaceShipTest.logic
         public List<Vector2> Coords { get; set; }
         public readonly double Gravity = 0.1;
         public readonly double Friction = 1;
+        public List<Vector2> Top { get; set; }
+        public List<Vector2> Bottom { get; set; }
+        public List<Vector2> Left { get; set; }
+        public List<Vector2> Right { get; set; }
 
 
         public void AddVelocity(Vector2 velocity)
@@ -53,6 +57,38 @@ namespace SpaceShipTest.logic
             this.TopRight.Y += velocity.Y;
             this.BottomLeft.Y += velocity.Y;
             this.BottomRight.Y += velocity.Y;
+        }
+
+        public void GetTopCoords()
+        {
+            for (int i = 0; i <= Width; i++)
+            {
+                this.Top.Add(new Vector2(Position.X + i, Position.Y));
+            }
+        }
+
+        public void GetBottomCoords()
+        {
+            for (int i = 0; i <= Width; i++)
+            {
+                this.Bottom.Add(new Vector2(Position.X + i, Position.Y + Height));
+            }
+        }
+
+        public void GetLeftCoords()
+        {
+            for (int i = 2; i < Height-2; i++)
+            {
+                this.Left.Add(new Vector2(Position.X, Position.Y + i));
+            }
+        }
+
+        public void GetRightCoords()
+        {
+            for (int i = 2; i < Height-2; i++)
+            {
+                this.Right.Add(new Vector2(Position.X + Width, Position.Y + i));
+            }
         }
 
         public void GetCoords()
