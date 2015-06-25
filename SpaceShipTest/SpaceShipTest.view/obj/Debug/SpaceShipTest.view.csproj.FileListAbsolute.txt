@@ -1,0 +1,11 @@
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\obj\Debug\SpaceShipTest.view.csprojResolveAssemblyReference.cache
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\obj\Debug\SpaceShipTest.view.Form1.resources
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\obj\Debug\SpaceShipTest.view.Properties.Resources.resources
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\obj\Debug\SpaceShipTest.view.csproj.GenerateResource.Cache
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\bin\Debug\SpaceShipTest.view.exe.config
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\bin\Debug\SpaceShipTest.view.exe
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\bin\Debug\SpaceShipTest.view.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\bin\Debug\SpaceShipTest.logic.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\bin\Debug\SpaceShipTest.logic.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\obj\Debug\SpaceShipTest.view.exe
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.view\obj\Debug\SpaceShipTest.view.pdb

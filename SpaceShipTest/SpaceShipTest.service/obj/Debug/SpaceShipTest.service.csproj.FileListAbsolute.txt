@@ -1,0 +1,7 @@
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.service\bin\Debug\SpaceShipTest.service.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.service\bin\Debug\SpaceShipTest.service.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.service\bin\Debug\SpaceShipTest.logic.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.service\bin\Debug\SpaceShipTest.logic.pdb
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.service\obj\Debug\SpaceShipTest.service.csprojResolveAssemblyReference.cache
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.service\obj\Debug\SpaceShipTest.service.dll
+C:\Users\Kilst\Desktop\C# Programs\SpaceShipTest\SpaceShipTest.service\obj\Debug\SpaceShipTest.service.pdb
