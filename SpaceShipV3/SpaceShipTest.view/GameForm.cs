@@ -20,6 +20,7 @@ namespace SpaceShipTest.view
         //System.Windows.Forms.Timer timer;
         Thread thread;
         System.Drawing.Graphics graphics;
+        private bool running = false;
 
         public GameForm()
         {
@@ -60,24 +61,32 @@ namespace SpaceShipTest.view
             game = new GameService();
             thread = new Thread(new ThreadStart(GameLoop));
             thread.Start();
+            running = true;
         }
 
         private void GameLoop()
         {
-            while (true)
+            try
             {
-                Thread.Sleep(13);
-                // Draw ship
-                graphics.Clear(Control.DefaultBackColor);
-                graphics.DrawEllipse(System.Drawing.Pens.Black, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
-                graphics.DrawRectangle(System.Drawing.Pens.Red, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
-
-                // Loop through list and draw Platforms
-                foreach (Platform platform in game.list.ObjectList)
+                while (running)
                 {
-                    graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)platform.TopLeft.X, (int)platform.TopLeft.Y, platform.Width, platform.Height);
+                    Thread.Sleep(13);
+                    // Draw ship
+                    graphics.Clear(Control.DefaultBackColor);
+                    graphics.DrawEllipse(System.Drawing.Pens.Black, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
+                    graphics.DrawRectangle(System.Drawing.Pens.Red, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
+
+                    // Loop through list and draw Platforms
+                    foreach (Platform platform in game.list.ObjectList)
+                    {
+                        graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)platform.Left[0].X, (int)platform.Left[0].Y, platform.Width, platform.Height);
+                    }
+                    game.Start();
                 }
-                game.Start();
+            }
+            catch (Exception)
+            {
+
             }
         }
 
@@ -128,6 +137,7 @@ namespace SpaceShipTest.view
 
         private void GameForm_FormClosing(Object sender, FormClosingEventArgs e)
         {
+            running = false;
             if (thread != null)
                 thread.Abort();
             Application.Exit();

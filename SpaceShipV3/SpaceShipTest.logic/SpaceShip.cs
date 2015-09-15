@@ -18,10 +18,6 @@ namespace SpaceShipTest.logic
             this.Position = new Vector2(100,20);
             this.Width = 10;
             this.Height = 10;
-            this.TopLeft = new Vector2(0, 0);
-            this.TopRight = new Vector2(Width, 0);
-            this.BottomLeft = new Vector2(0, Height);
-            this.BottomRight = new Vector2(Width, Height);
             this.IsGrounded = false;
             this.Coords = new List<Vector2>();
             this.GetCoords();
