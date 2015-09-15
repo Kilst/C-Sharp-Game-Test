@@ -9,3 +9,6 @@ C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.
 C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\bin\Debug\SpaceShip.logic.dll
 C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\bin\Debug\SpaceShip.logic.pdb
 C:\Users\Kilst\Desktop\C# Programs\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.view.Form1.resources
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShip\SpaceShip.view\bin\Debug\SpaceShip.view.exe.config
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.view.exe
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShip\SpaceShip.view\obj\Debug\SpaceShip.view.pdb

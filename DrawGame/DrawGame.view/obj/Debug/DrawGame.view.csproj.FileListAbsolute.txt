@@ -9,3 +9,6 @@ C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\obj\Debug\DrawGame.vie
 C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\obj\Debug\DrawGame.view.pdb
 C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\bin\Debug\DrawGame.logic.dll
 C:\Users\Kilst\Desktop\C# Programs\DrawGame\DrawGame.view\bin\Debug\DrawGame.logic.pdb
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\DrawGame\DrawGame.view\bin\Debug\DrawGame.view.exe.config
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\DrawGame\DrawGame.view\obj\Debug\DrawGame.view.exe
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\DrawGame\DrawGame.view\obj\Debug\DrawGame.view.pdb
