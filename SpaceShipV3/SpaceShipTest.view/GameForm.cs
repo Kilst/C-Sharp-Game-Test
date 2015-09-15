@@ -14,14 +14,14 @@ using System.Threading;
 
 namespace SpaceShipTest.view
 {
-    public partial class Form1 : Form
+    public partial class GameForm : Form
     {
         GameService game;
         //System.Windows.Forms.Timer timer;
         Thread thread;
         System.Drawing.Graphics graphics;
 
-        public Form1()
+        public GameForm()
         {
             InitializeComponent();
         }
@@ -83,38 +83,42 @@ namespace SpaceShipTest.view
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == Keys.Left || keyData == Keys.A)
+            if (game != null)
             {
-                game.ship.AddVelocity(new Vector2(-1,0));
-                return true; //for the active control to see the keypress, return false
-            }
-            if (keyData == Keys.Right || keyData == Keys.D)
-            {
-                game.ship.AddVelocity(new Vector2(1, 0));
-                return true; //for the active control to see the keypress, return false
-            }
-            if (keyData == Keys.Up || keyData == Keys.W)
-            {
-                if (game.ship.IsGrounded == true)
+                if (keyData == Keys.Left || keyData == Keys.A)
                 {
-                    game.ship.MovePosition(new Vector2(0, -2));
+                    game.ship.AddVelocity(new Vector2(-1, 0));
+                    return true; //for the active control to see the keypress, return false
                 }
-                game.ship.AddVelocity(new Vector2(0, -2));
-                return true; //for the active control to see the keypress, return false
-            }
-            if (keyData == Keys.Down || keyData == Keys.S)
-            {
-                game.ship.AddVelocity(new Vector2(0, 1));
-                return true; //for the active control to see the keypress, return false
-            }
-            if (keyData == Keys.Space)
-            {
-                if (game.ship.IsGrounded == true)
+                if (keyData == Keys.Right || keyData == Keys.D)
                 {
-                    game.ship.MovePosition(new Vector2(0, -2));
+                    game.ship.AddVelocity(new Vector2(1, 0));
+                    return true; //for the active control to see the keypress, return false
                 }
-                game.ship.AddVelocity(new Vector2(0, -3));
-                return true; //for the active control to see the keypress, return false
+                if (keyData == Keys.Up || keyData == Keys.W)
+                {
+                    if (game.ship.IsGrounded == true)
+                    {
+                        game.ship.MovePosition(new Vector2(0, -2));
+                    }
+                    game.ship.AddVelocity(new Vector2(0, -2));
+                    return true; //for the active control to see the keypress, return false
+                }
+                if (keyData == Keys.Down || keyData == Keys.S)
+                {
+                    game.ship.AddVelocity(new Vector2(0, 1));
+                    return true; //for the active control to see the keypress, return false
+                }
+                if (keyData == Keys.Space)
+                {
+                    if (game.ship.IsGrounded == true)
+                    {
+                        game.ship.MovePosition(new Vector2(0, -2));
+                    }
+                    game.ship.AddVelocity(new Vector2(0, -3));
+                    return true; //for the active control to see the keypress, return false
+                }
+                return base.ProcessCmdKey(ref msg, keyData);
             }
             else
             {
@@ -122,9 +126,10 @@ namespace SpaceShipTest.view
             }
         }
 
-        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
+        private void GameForm_FormClosing(Object sender, FormClosingEventArgs e)
         {
-            thread.Abort();
+            if (thread != null)
+                thread.Abort();
             Application.Exit();
         }
     }

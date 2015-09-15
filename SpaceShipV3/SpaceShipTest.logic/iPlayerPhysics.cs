@@ -12,6 +12,6 @@ namespace SpaceShipTest.logic
         //void CollisionCheckX(GameObjectList list);
         void GravityCheck();
         void FrictionCheck();
-        void TerminalVelocityCheck();
+        void CheckVelocity();
     }
 }

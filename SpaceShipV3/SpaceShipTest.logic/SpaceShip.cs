@@ -33,10 +33,10 @@ namespace SpaceShipTest.logic
         {
             // Check velocity is not > MaxVelocity
             // if so, set it to MaxVelocity
-            if (this.Velocity.X > MaxVelocity)
-                this.Velocity.X = MaxVelocity;
-            else if (this.Velocity.X < -MaxVelocity)
-                this.Velocity.X = -MaxVelocity;
+            if (this.Velocity.X > MaxVelocity / 2)
+                this.Velocity.X = MaxVelocity / 2;
+            else if (this.Velocity.X < -MaxVelocity / 2)
+                this.Velocity.X = -MaxVelocity / 2;
 
             if (this.Velocity.Y > MaxVelocity)
                 this.Velocity.Y = MaxVelocity;
@@ -109,6 +109,8 @@ namespace SpaceShipTest.logic
                 this.Velocity.Y += this.Gravity;
             }
         }
+
+        /* NEED TO REFACTOR */
         public void FrictionCheck()
         {
             if (this.IsGrounded == false)
@@ -164,28 +166,6 @@ namespace SpaceShipTest.logic
                 {
                     this.Velocity.X = 0;
                 }
-            }
-        }
-
-        public void TerminalVelocityCheck()
-        {
-            // Limit X velocity
-            if (this.Velocity.X < -1)
-            {
-                this.Velocity.X = -1;
-            }
-            else if (this.Velocity.X > 1)
-            {
-                this.Velocity.X = 1;
-            }
-            // Limit Y velocity
-            if (this.Velocity.Y > 3)
-            {
-                this.Velocity.Y = 3;
-            }
-            else if (this.Velocity.Y < -3)
-            {
-                this.Velocity.Y = -3;
             }
         }
     }

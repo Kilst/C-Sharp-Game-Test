@@ -1,6 +1,6 @@
 ﻿namespace SpaceShipTest.view
 {
-    partial class Form1
+    partial class GameForm
     {
         /// <summary>
         /// Required designer variable.
@@ -41,16 +41,16 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // Form1
+            // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(422, 262);
             this.Controls.Add(this.btnStart);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "GameForm";
+            this.Text = "SpaceShip Game";
             this.ResumeLayout(false);
-            this.FormClosing += this.Form1_FormClosing;
+
         }
 
         #endregion

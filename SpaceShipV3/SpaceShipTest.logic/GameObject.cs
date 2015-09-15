@@ -31,7 +31,7 @@ namespace SpaceShipTest.logic
             this.Velocity.Y += velocity.Y;
         }
 
-        public void Move()
+        public virtual void Move()
         {
             // Add veloicty to position
             this.MovePosition(new Vector2(0, this.Velocity.Y));
@@ -39,7 +39,7 @@ namespace SpaceShipTest.logic
             this.MovePosition(new Vector2(this.Velocity.X, 0));
         }
 
-        public void MovePosition(Vector2 velocity)
+        public virtual void MovePosition(Vector2 velocity)
         {
             foreach (Vector2 item in this.Coords)
             {
