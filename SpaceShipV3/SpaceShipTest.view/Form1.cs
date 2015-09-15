@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //..
 using SpaceShipTest.logic;
+using System.Threading;
 
 namespace SpaceShipTest.view
 {
     public partial class Form1 : Form
     {
         GameService game;
-        System.Windows.Forms.Timer timer;
+        //System.Windows.Forms.Timer timer;
+        Thread thread;
         System.Drawing.Graphics graphics;
 
         public Form1()
@@ -23,32 +25,59 @@ namespace SpaceShipTest.view
             InitializeComponent();
         }
 
+        //private void btnStart_Click(object sender, EventArgs e)
+        //{
+        //    if (timer == null)
+        //    {
+        //        timer = new System.Windows.Forms.Timer();
+        //        timer.Tick += new System.EventHandler(OnTimerEvent);
+        //        timer.Interval = 10;
+        //        timer.Enabled = true;
+        //        graphics = this.CreateGraphics();
+        //        game = new GameService();
+        //    }
+        //}
+
+        //private void OnTimerEvent(object sender, EventArgs e)
+        //{
+        //    // Draw ship
+        //    graphics.Clear(Control.DefaultBackColor);
+        //    graphics.DrawEllipse(System.Drawing.Pens.Black, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
+        //    graphics.DrawRectangle(System.Drawing.Pens.Red, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
+
+        //    // Loop through list and draw Platforms
+        //    foreach (Platform platform in game.list.ObjectList)
+        //    {
+        //        graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)platform.TopLeft.X, (int)platform.TopLeft.Y, platform.Width, platform.Height);
+        //    }
+        //    game.Start();
+        //}
+
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (timer == null)
-            {
-                timer = new System.Windows.Forms.Timer();
-                timer.Tick += new System.EventHandler(OnTimerEvent);
-                timer.Interval = 10;
-                timer.Enabled = true;
-                graphics = this.CreateGraphics();
-                game = new GameService();
-            }
+            graphics = this.CreateGraphics();
+            game = new GameService();
+            thread = new Thread(new ThreadStart(GameLoop));
+            thread.Start();
         }
 
-        private void OnTimerEvent(object sender, EventArgs e)
+        private void GameLoop()
         {
-            // Draw ship
-            graphics.Clear(Control.DefaultBackColor);
-            graphics.DrawEllipse(System.Drawing.Pens.Black, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
-            graphics.DrawRectangle(System.Drawing.Pens.Red, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
-
-            // Loop through list and draw Platforms
-            foreach (Platform platform in game.list.ObjectList)
+            while (true)
             {
-                graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)platform.TopLeft.X, (int)platform.TopLeft.Y, platform.Width, platform.Height);
+                Thread.Sleep(13);
+                // Draw ship
+                graphics.Clear(Control.DefaultBackColor);
+                graphics.DrawEllipse(System.Drawing.Pens.Black, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
+                graphics.DrawRectangle(System.Drawing.Pens.Red, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
+
+                // Loop through list and draw Platforms
+                foreach (Platform platform in game.list.ObjectList)
+                {
+                    graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)platform.TopLeft.X, (int)platform.TopLeft.Y, platform.Width, platform.Height);
+                }
+                game.Start();
             }
-            game.Start();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -90,6 +119,12 @@ namespace SpaceShipTest.view
             {
                 return base.ProcessCmdKey(ref msg, keyData);
             }
+        }
+
+        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            thread.Abort();
+            Application.Exit();
         }
     }
 }

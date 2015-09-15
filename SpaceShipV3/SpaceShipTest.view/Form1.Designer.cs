@@ -50,7 +50,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
-
+            this.FormClosing += this.Form1_FormClosing;
         }
 
         #endregion
