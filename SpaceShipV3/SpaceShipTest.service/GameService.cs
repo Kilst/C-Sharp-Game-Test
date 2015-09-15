@@ -27,6 +27,7 @@ namespace SpaceShipTest.service
 
         public void Start()
         {
+            ship.CheckVelocity();
             ship.CollisionCheck(list);
             ship.FrictionCheck();
             ship.GravityCheck();
