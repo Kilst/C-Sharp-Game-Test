@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //..
 using SpaceShipTest.logic;
+using SpaceShipTest.service;
 using System.Threading;
 
 namespace SpaceShipTest.view

@@ -8,3 +8,8 @@ C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipTest\SpaceShipTest.lo
 C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipTest\SpaceShipTest.logic\obj\Debug\SpaceShipTest.logic.pdb
 C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipTest\SpaceShipTest.logic\bin\Debug\SpaceShipTest.logic.dll
 C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipTest\SpaceShipTest.logic\bin\Debug\SpaceShipTest.logic.pdb
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.logic\bin\Debug\SpaceShipTest.logic.dll
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.logic\bin\Debug\SpaceShipTest.logic.pdb
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.logic\obj\Debug\SpaceShipTest.logic.csprojResolveAssemblyReference.cache
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.logic\obj\Debug\SpaceShipTest.logic.dll
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.logic\obj\Debug\SpaceShipTest.logic.pdb

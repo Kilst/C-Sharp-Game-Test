@@ -82,6 +82,10 @@
       <Project>{eb408c8f-2138-403c-bae8-9fbeb0ca9a72}</Project>
       <Name>SpaceShipTest.logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SpaceShipTest.service\SpaceShipTest.service.csproj">
+      <Project>{20c735e6-c560-43fd-8e88-2c325aa64da8}</Project>
+      <Name>SpaceShipTest.service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

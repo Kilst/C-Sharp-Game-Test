@@ -31,3 +31,5 @@ C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.view
 C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.view\obj\Debug\SpaceShipTest.view.Form1.resources
 C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.view\obj\Debug\SpaceShipTest.view.Properties.Resources.resources
 C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.view\obj\Debug\SpaceShipTest.view.csproj.GenerateResource.Cache
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.view\bin\Debug\SpaceShipTest.service.dll
+C:\Users\Kilst\Documents\GitHub\C-Sharp-Game-Test\SpaceShipV3\SpaceShipTest.view\bin\Debug\SpaceShipTest.service.pdb

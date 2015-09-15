@@ -19,12 +19,13 @@ namespace SpaceShipTest.service
         {
             this.ship = new SpaceShip();
             this.platform1 = new Platform(new Vector2(80, 100));
-            this.platform2 = new Platform(new Vector2(100, 180));
+            this.platform2 = new Platform(new Vector2(210, 130));
+            this.list = new GameObjectList();
             this.list.ObjectList.Add(platform1);
             this.list.ObjectList.Add(platform2);
         }
 
-        public void Game()
+        public void Start()
         {
             ship.CollisionCheck(list);
             ship.FrictionCheck();
@@ -32,11 +33,12 @@ namespace SpaceShipTest.service
             ship.Move();
         }
 
+        // Should be polymorphic
         public int GetObjectPositionX(GameObject obj)
         {
             int x = (int)obj.Position.X;
             return x;
-            this.GetObjectPositionX(this.ship);
+            //this.GetObjectPositionX(this.ship);
         }
 
         public int GetObjectPositionY(GameObject obj)
