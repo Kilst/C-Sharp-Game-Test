@@ -77,7 +77,7 @@ namespace SpaceShipTest.view
                     graphics.DrawRectangle(System.Drawing.Pens.Red, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
 
                     // Loop through list and draw Platforms
-                    foreach (Platform platform in game.list.ObjectList)
+                    foreach (Platform platform in game.list)
                     {
                         graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)platform.Left[0].X, (int)platform.Left[0].Y, platform.Width, platform.Height);
                     }

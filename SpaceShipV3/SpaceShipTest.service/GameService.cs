@@ -13,16 +13,16 @@ namespace SpaceShipTest.service
         public SpaceShip ship { get; set; }
         public Platform platform1 { get; set; }
         public Platform platform2 { get; set; }
-        public GameObjectList list { get; set; }
+        public List<GameObject> list { get; set; }
 
         public GameService()
         {
             this.ship = new SpaceShip();
             this.platform1 = new Platform(new Vector2(80, 100));
             this.platform2 = new Platform(new Vector2(210, 130));
-            this.list = new GameObjectList();
-            this.list.ObjectList.Add(platform1);
-            this.list.ObjectList.Add(platform2);
+            this.list = new List<GameObject>();
+            this.list.Add(platform1);
+            this.list.Add(platform2);
         }
 
         public void Start()

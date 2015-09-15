@@ -8,8 +8,8 @@ namespace SpaceShipTest.logic
 {
     public interface iPlayerPhysics
     {
-        //void CollisionCheckY(GameObjectList list);
-        //void CollisionCheckX(GameObjectList list);
+        void Collisions(List<Vector2> obj, string vector);
+        void CollisionCheck(List<GameObject> list);
         void GravityCheck();
         void FrictionCheck();
         void CheckVelocity();

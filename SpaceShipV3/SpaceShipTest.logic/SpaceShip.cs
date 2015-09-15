@@ -40,7 +40,7 @@ namespace SpaceShipTest.logic
                 this.Velocity.Y = -MaxVelocity;
         }
 
-        private void Collisions(List<Vector2> obj, string vector)
+        public void Collisions(List<Vector2> obj, string vector)
         {
             foreach (Vector2 objCoord in obj)
             {
@@ -72,11 +72,11 @@ namespace SpaceShipTest.logic
         }
 
 
-        public void CollisionCheck(GameObjectList list)
+        public void CollisionCheck(List<GameObject> list)
         {
             // Loop through the list of GameObjects,
             // and compare each one's co-ords to our ships co-ords
-            foreach (GameObject obj in list.ObjectList)
+            foreach (GameObject obj in list)
             {
                 // Make sure we don't compare our own co-ords to ourself
                 if (obj != this)

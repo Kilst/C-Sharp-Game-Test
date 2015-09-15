@@ -10,7 +10,7 @@ namespace SpaceShipTest.logic
     {
         public int Width { get; set; }
         public int Height { get; set; }
-        public Vector2 Position { get; set; }
+        public Vector2 Position { get; set; } /* Not used in calcs from what I remember */
         public Vector2 Velocity { get; set; }
         public List<Vector2> Coords { get; set; }
         public readonly double Gravity = 0.1; /* Should really set gravity and friction elsewhere */
@@ -79,7 +79,7 @@ namespace SpaceShipTest.logic
             }
         }
 
-        public void GetCoords()
+        public void GetCoords() /* Can't differentiate boundaries */
         {
             // 2 for loops to get co-ords
             for (int y = 0; y <= Height; y++)
