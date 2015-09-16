@@ -27,13 +27,14 @@ namespace SpaceShipTest.logic
 
         public void CheckVelocity()
         {
-            // Check velocity is not > MaxVelocity
-            // if so, set it to MaxVelocity
+            // Check X velocity is not > MaxVelocity
+            // if so, set it to MaxVelocity/2
             if (this.Velocity.X > MaxVelocity / 2)
                 this.Velocity.X = MaxVelocity / 2;
             else if (this.Velocity.X < -MaxVelocity / 2)
                 this.Velocity.X = -MaxVelocity / 2;
-
+            // Check Y velocity is not > MaxVelocity
+            // if so, set it to MaxVelocity
             if (this.Velocity.Y > MaxVelocity)
                 this.Velocity.Y = MaxVelocity;
             else if (this.Velocity.Y < -MaxVelocity)

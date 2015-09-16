@@ -10,28 +10,31 @@ namespace SpaceShipTest.service
 {
     public class GameService
     {
-        public SpaceShip ship { get; set; }
-        public Platform platform1 { get; set; }
-        public Platform platform2 { get; set; }
-        public List<GameObject> list { get; set; }
+        public SpaceShip Ship { get; set; }
+        public Platform Platform1 { get; set; }
+        public Platform Platform2 { get; set; }
+        public Platform Square { get; set; }
+        public List<GameObject> List { get; set; }
 
         public GameService()
         {
-            this.ship = new SpaceShip();
-            this.platform1 = new Platform(new Vector2(80, 100));
-            this.platform2 = new Platform(new Vector2(210, 130));
-            this.list = new List<GameObject>();
-            this.list.Add(platform1);
-            this.list.Add(platform2);
+            Ship = new SpaceShip();
+            Platform1 = new Platform(new Vector2(80, 100));
+            Platform2 = new Platform(new Vector2(210, 130));
+            Square = new Platform(new Vector2(220, 30), 50, 50);
+            List = new List<GameObject>();
+            List.Add(Platform1);
+            List.Add(Platform2);
+            List.Add(Square);
         }
 
         public void Start()
         {
-            ship.CheckVelocity();
-            ship.CollisionCheck(list);
-            ship.FrictionCheck();
-            ship.GravityCheck();
-            ship.Move();
+            Ship.CheckVelocity();
+            Ship.CollisionCheck(List);
+            Ship.FrictionCheck();
+            Ship.GravityCheck();
+            Ship.Move();
         }
 
         // Should be polymorphic

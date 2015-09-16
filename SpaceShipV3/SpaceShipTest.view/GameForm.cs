@@ -64,6 +64,7 @@ namespace SpaceShipTest.view
             running = true;
         }
 
+        // Main loop
         private void GameLoop()
         {
             try
@@ -71,16 +72,18 @@ namespace SpaceShipTest.view
                 while (running)
                 {
                     Thread.Sleep(13);
-                    // Draw ship
+                    // Clear Form
                     graphics.Clear(Control.DefaultBackColor);
-                    graphics.DrawEllipse(System.Drawing.Pens.Black, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
-                    graphics.DrawRectangle(System.Drawing.Pens.Red, (int)game.ship.Position.X, (int)game.ship.Position.Y, game.ship.Width, game.ship.Height);
 
                     // Loop through list and draw Platforms
-                    foreach (Platform platform in game.list)
+                    foreach (Platform platform in game.List)
                     {
                         graphics.DrawRectangle(System.Drawing.Pens.Blue, (int)platform.Left[0].X, (int)platform.Left[0].Y, platform.Width, platform.Height);
                     }
+                    // Draw ship
+                    graphics.DrawEllipse(System.Drawing.Pens.Black, (int)game.Ship.Position.X, (int)game.Ship.Position.Y, game.Ship.Width, game.Ship.Height);
+                    graphics.DrawRectangle(System.Drawing.Pens.Red, (int)game.Ship.Position.X, (int)game.Ship.Position.Y, game.Ship.Width, game.Ship.Height);
+
                     game.Start();
                 }
             }
@@ -90,41 +93,42 @@ namespace SpaceShipTest.view
             }
         }
 
+        // Keypresses for moving
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (game != null)
             {
                 if (keyData == Keys.Left || keyData == Keys.A)
                 {
-                    game.ship.AddVelocity(new Vector2(-1, 0));
+                    game.Ship.AddVelocity(new Vector2(-1, 0));
                     return true; //for the active control to see the keypress, return false
                 }
                 if (keyData == Keys.Right || keyData == Keys.D)
                 {
-                    game.ship.AddVelocity(new Vector2(1, 0));
+                    game.Ship.AddVelocity(new Vector2(1, 0));
                     return true; //for the active control to see the keypress, return false
                 }
                 if (keyData == Keys.Up || keyData == Keys.W)
                 {
-                    if (game.ship.IsGrounded == true)
+                    if (game.Ship.IsGrounded == true)
                     {
-                        game.ship.MovePosition(new Vector2(0, -2));
+                        game.Ship.MovePosition(new Vector2(0, -2));
                     }
-                    game.ship.AddVelocity(new Vector2(0, -2));
+                    game.Ship.AddVelocity(new Vector2(0, -2));
                     return true; //for the active control to see the keypress, return false
                 }
                 if (keyData == Keys.Down || keyData == Keys.S)
                 {
-                    game.ship.AddVelocity(new Vector2(0, 1));
+                    game.Ship.AddVelocity(new Vector2(0, 1));
                     return true; //for the active control to see the keypress, return false
                 }
                 if (keyData == Keys.Space)
                 {
-                    if (game.ship.IsGrounded == true)
+                    if (game.Ship.IsGrounded == true)
                     {
-                        game.ship.MovePosition(new Vector2(0, -2));
+                        game.Ship.MovePosition(new Vector2(0, -2));
                     }
-                    game.ship.AddVelocity(new Vector2(0, -3));
+                    game.Ship.AddVelocity(new Vector2(0, -3));
                     return true; //for the active control to see the keypress, return false
                 }
                 return base.ProcessCmdKey(ref msg, keyData);
@@ -134,7 +138,7 @@ namespace SpaceShipTest.view
                 return base.ProcessCmdKey(ref msg, keyData);
             }
         }
-
+        // On Form Close
         private void GameForm_FormClosing(Object sender, FormClosingEventArgs e)
         {
             running = false;

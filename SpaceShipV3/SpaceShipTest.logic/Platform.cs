@@ -24,5 +24,22 @@ namespace SpaceShipTest.logic
             this.GetLeftCoords();
             this.GetRightCoords();
         }
+
+        public Platform(Vector2 position, int width, int height)
+        {
+            this.Position = position;
+            this.Width = width;
+            this.Height = height;
+            this.Coords = new List<Vector2>();
+            this.GetCoords();
+            this.Top = new List<Vector2>();
+            this.Bottom = new List<Vector2>();
+            this.Left = new List<Vector2>();
+            this.Right = new List<Vector2>();
+            this.GetTopCoords();
+            this.GetBottomCoords();
+            this.GetLeftCoords();
+            this.GetRightCoords();
+        }
     }
 }
